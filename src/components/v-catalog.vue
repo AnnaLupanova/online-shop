@@ -114,7 +114,7 @@ export default {
     ]),
     addToCart(data) {
 
-      axios.post('http://localhost:3000/products', {
+      axios.post('http://localhost:8080/basket', {
         article: data.article
       })
           .then(function (response) {
