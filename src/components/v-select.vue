@@ -75,9 +75,9 @@ export default {
 .options {
   border: 1px solid #aeaeae;
   position: absolute;
-  top: 46px;
+  top: 76px;
   right: 0;
-  width: 198px;
+  width: 200px;
 }
 
 .v-select {

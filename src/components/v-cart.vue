@@ -4,14 +4,22 @@
   <v-header/>
   <div class="v-cart">
 
-    <p v-if="!cart_data.length">There are no products in cart...</p>
+   <!-- <p v-if="!cart_data.length">There are no products in cart...</p>-->
+    <div class="v-car_cart"
+         v-for="product in this.$store.state.cart_products"
+         :key="product.article"
+         v-bind:cart_item_data="product"
+    ></div>
     <v-cart-item
-        v-for="(item,index) in cart_data"
-        :key="item.article"
+        v-for="(item,index) in this.$store.state.cart_products"
+        :key="item.name"
         :cart_item_data="item"
+
         @deleteFromCart="deleteFromCart(index)"
         @increment="increment(index)"
         @decrement="decrement(index)"
+
+
     />
     <div class="v-cart__total">
       <p class="total__name">Total:</p>
@@ -27,31 +35,24 @@ import vCartItem from './v-cart-item'
 import {mapActions} from'vuex'
 import {mapGetters} from 'vuex'
 import vHeader from './v-header'
+//import axios from "axios";
 
 export default {
 name: "v-cart",
   components:{
     vCartItem, vHeader
   },
-  props:{
-  cart_data:{
-    type: Array,
-    default(){
-      return[]
-    }
-  }
-  },
+
   computed:{
   cartTotalCost(){
-    let result = [];
-
-    if(this.cart_data.length){
-      for (let item of this.cart_data){
-        result.push(item.price* item.quantity) ;
+    let result = []
+        if(this.$store.state.cart_products.length){
+      for (let item of this.$store.state.cart_products){
+        result.push(item.price*item.quantity) ;
 
       }
       result = result.reduce(function (sum,el){
-        return sum+el;
+        return (sum+el);
       })
       return result
     }else{
@@ -61,14 +62,15 @@ name: "v-cart",
 
   },
     ...mapGetters([
-        'CART'
+        'CART','CART_PRODUCT'
       ])
 
   },
   methods:{
   ...mapActions([
-    'DELETE_FROM_CART','INCREMENT_CART','DECREMENT_CART'
+    'DELETE_FROM_CART','INCREMENT_CART','DECREMENT_CART','GET_CART_PRODUCT'
   ]),
+
     increment(index){
     this.INCREMENT_CART(index)
     },
@@ -78,6 +80,10 @@ name: "v-cart",
     deleteFromCart(index){
       this.DELETE_FROM_CART(index)
     }
+  },
+  mounted() {
+  this.GET_CART_PRODUCT();
+
   }
 }
 

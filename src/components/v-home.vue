@@ -3,27 +3,104 @@
 
   <div class="main">
     <v-header/>
-    <div class="motivate">
-      <div class="text-motiv">
-        <p>Will is what makes you win when your sanity tells you that you are defeated</p>
+
+      <div class="motivate">
+        <b-carousel
+            id="carousel-1"
+            :interval="4000"
+            controls
+            indicators
+            background="#ababab"
+            img-width="1024"
+            img-height="300"
+            style="text-shadow: 1px 1px 2px #333;">
+
+          <b-carousel-slide>
+            <template #img>
+              <img
+                  class="d-block img-fluid w-100"
+                  width="1024"
+                  height="400"
+                  src="../images/slide_1.jpg"
+                  alt="image slot"
+
+              >
+            </template>
+              <p style="font-size: 20px; font-family:Montserrat, sans-serif; text-transform: uppercase;">Always make a total effort, even when the odds are against you.</p>
+          </b-carousel-slide>
+          <b-carousel-slide>
+            <template #img>
+              <img
+                  class="d-block img-fluid w-100"
+                  width="1024"
+                  height="400"
+                  src="../images/slide_2.jpg"
+                  alt="image slot"
+              >
+            </template>
+
+          </b-carousel-slide>
+          <b-carousel-slide>
+            <template #img>
+              <img
+                  class="d-block img-fluid w-100"
+                  width="1024"
+                  height="400"
+                  src="../images/slide_3.jpg"
+                  alt="image slot"
+              >
+            </template>
+            <p style="font-size: 20px; font-family:Montserrat, sans-serif; text-transform: uppercase;">Make each day your masterpiece.</p>
+          </b-carousel-slide>
+          <b-carousel-slide>
+            <template #img>
+              <img
+                  class="d-block img-fluid w-100"
+                  width="1024"
+                  height="400"
+                  src="../images/slide_4.jpg"
+                  alt="image slot"
+              >
+            </template>
+            <p style="font-size: 20px; font-family:Montserrat, sans-serif; text-transform: uppercase;">It does not matter how slowly you go as long as you do not stop.</p>
+
+          </b-carousel-slide>
+          <b-carousel-slide>
+            <template #img>
+              <img
+                  class="d-block img-fluid w-100"
+                  width="1024"
+                  height="400"
+                  src="../images/123.jpg"
+                  alt="image slot"
+              >
+            </template>
+            <p style="font-size: 20px; font-family:Montserrat, sans-serif; text-transform: uppercase;">In order to succeed, we must first believe that we can.</p>
+
+          </b-carousel-slide>
+
+        </b-carousel>
+
       </div>
-    </div>
+
     <div class="gender">
       <div class="woman">
+        <router-link :to="{name:'catalog'}">
         <div class="over">
           <div class="btnCl">
             <button><span>Women's</span></button>
           </div>
         </div>
+        </router-link>
       </div>
       <div class="men">
+        <router-link :to="{name:'catalog'}">
         <div class="over">
           <div class="btnCl">
             <button><span>Men's</span></button>
           </div>
         </div>
-
-
+        </router-link>
       </div>
     </div>
 
@@ -31,15 +108,17 @@
     <div class="slaider">
       <div class="image">
         <div class="first">
+          <router-link :to="{name:'running'}">
           <div class="overlay">
             <div class="icon">
               <i class="fas fa-running"></i>
             </div>
             <p>Running</p>
-
           </div>
+          </router-link>
         </div>
         <div class="second">
+          <router-link :to="{name:'fitness'}">
           <div class="overlay">
             <div class="icon">
               <i class="fas fa-dumbbell"></i>
@@ -47,9 +126,11 @@
             <p>Fitness</p>
 
           </div>
+          </router-link>
         </div>
 
         <div class="third">
+          <router-link :to="{name:'football'}">
           <div class="overlay">
             <div class="icon">
               <i class="far fa-futbol"></i>
@@ -57,6 +138,7 @@
             <p>Football</p>
 
           </div>
+          </router-link>
         </div>
 
       </div>
@@ -66,14 +148,24 @@
     <v-footer/>
 
   </div>
-
 </div>
+
 </template>
 
 <script>
 import {mapGetters} from "vuex"
 import vHeader from './v-header'
 import vFooter from './v-footer'
+import Vue from 'vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+Vue.use(BootstrapVue)
+Vue.use(BootstrapVueIcons)
 
 
 export default {
@@ -82,41 +174,34 @@ name: "v-home",
 vHeader, vFooter
   },
 
+
   computed:{
     ...mapGetters([
       'CART'
     ])
   },
-  methods:{
 
-  }
 }
 </script>
 
 <style >
 @import '../assets/style/style.scss';
+@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap";
 
-.motivate{
-  background: url("../images/123.jpg") center/cover;
-  position: relative;
-  height: 25em;
-  width: 100%;
-}
-.motivate .text-motiv{
-  position: absolute;
-  background-color:rgba(255,255,255,0.6);
-  width: 34em;
-  height: 13em;
-  right: 4em;
-  top: 10.75em;
+.img-fluid{
+  height: 400px ;
+  object-fit: cover;
+  object-position: center;
 
 }
-.motivate .text-motiv p{
-  font: 600 2.3em 'Dosis', sans-serif;
-  text-transform: uppercase;
-  padding: 0.7em;
-  text-align: center;
+.carousel-control-prev-icon, .carousel-control-next-icon {
+
+display: none;
 }
+
+
+
 .slaider .image{
   display: flex;
   flex-direction: row;
@@ -132,6 +217,9 @@ vHeader, vFooter
   height: 16.375em;
   position: relative;
   width: 33.3%;
+}
+b-carousel-slide{
+  height: 300px;
 }
 .slaider .image .second{
   background: url("../images/fitness.jpg") center/cover;

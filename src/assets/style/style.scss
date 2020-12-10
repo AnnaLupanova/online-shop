@@ -21,12 +21,7 @@
   color: black;
   font-size: 18px;
 }
-.main .logo{
-  background: url("/logo.png") center/cover;
-  height: 4.688em;
-  width: 14.688em;
-  margin: 0 18.75em 0 4.25em;
-}
+
 .main{
   width: 100%;
 }
@@ -40,11 +35,42 @@
 
 .header .column{
   padding-right: 3.438em;
+  margin-right: 27px;
+
 
 }
+.header .column.dropdown{
+  position: relative;
+  display: inline-block;
+
+}
+.dropdown-content{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  margin-left: -10px;
+
+}
+.dropdown .dropdown-content a{
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  background: rgba(224,224,224,.8);
+  box-shadow: 0 0 8px 0 #e0e0e0;
+  padding: 3px;
+
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
 .header .column a{
   text-decoration: none;
 }
+
+
 .header .column a p{
   color: #000;
   font: 400 1.375em 'Montserrat Alternates', sans-serif;
@@ -53,10 +79,12 @@
 .header .column a p:hover{
   opacity: 50%;
   cursor: pointer;
+
 }
 .main .header .column a i:hover{
   opacity: 50%;
   cursor: pointer;
+
 }
 .main .header .column a i{
   font-size: 1.438em;

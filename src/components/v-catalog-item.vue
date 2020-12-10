@@ -21,7 +21,8 @@ name: "v-catalog-item",
   },
   methods:{
     addToCart(){
-      this.$emit('addToCart',this.product_data)
+     this.$emit('addToCart',this.product_data)
+
     },
     productClick(){
       this.$emit('productClick',this.product_data.article)
@@ -45,8 +46,9 @@ name: "v-catalog-item",
 
 
   .v-catalog-item__name {
-    font: 400 15px Montserrat, sans-serif;
+    font: 600 15px Montserrat, sans-serif;
     text-transform: uppercase;
+    padding-top: 10px;
 
   }
 
@@ -81,6 +83,7 @@ name: "v-catalog-item",
     background: #2EE59D;
     box-shadow: 0 15px 20px rgba(46,229,157,.4);
     color: white;
+    cursor: pointer;
     transform: translateY(-7px);
   }
 

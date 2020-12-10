@@ -2,44 +2,55 @@
   "products": [
     {
       "image": "1.png",
-      "name": "T-shirt 1",
+      "name": "ASICS / Куртка ",
       "price": 2100.234234234,
       "article": "T1",
       "available": true,
-      "category": "Male"
+      "category": "Female",
+      "quantity": 1,
+      "id": 1,
+      "description": "WINTER ACCELERATE JACKET обладает герметичной конструкцией и удлиненной спинкой для комфорта во время пробежек в холодное время года. Эта куртка изготовлена с ощущением индивидуальной посадки, дополнена регулируемым шнурком в капюшоне, а светоотражающие элементы размещены по всей поверхности куртки для улучшения видимости в условиях низкой освещенности."
     },
     {
       "image": "2.png",
-      "name": "T-shirt 2",
+      "name": "ASICS / Куртка WINTER ACCELERATE JACKET",
       "price": 3150.12312412,
       "article": "T2",
       "available": true,
-      "category": "Female"
+      "category": "Male",
+      "quantity": 1,
+      "id": 2
     },
     {
       "image": "3.png",
-      "name": "T-shirt 3",
+      "name": "ASICS / Шорты ROAD 2-N-1 7IN SHORT",
       "price": 4200.51524,
       "article": "T3",
       "available": false,
-      "category": "Female"
+      "category": "Male",
+      "quantity": 1,
+      "id": 3
     },
     {
       "image": "4.png",
-      "name": "T-shirt 4",
+      "name": "Bona Fide / Тайтсы",
       "price": 5300.1245512,
       "article": "T4",
       "available": true,
-      "category": "Male"
+      "category": "Female",
+      "quantity": 1,
+      "id": 4
     },
     {
       "image": "5.png",
-      "name": "T-shirt 5",
+      "name": "RAY / Куртка ",
       "price": 6500.3522314,
       "article": "T5",
       "available": false,
       "category": "Female",
-      "size": "M"
+      "size": "M",
+      "quantity": 1,
+      "id": 5
     },
     {
       "image": "6.png",
@@ -48,7 +59,9 @@
       "article": "T6",
       "available": true,
       "category": "Female",
-      "size": "S"
+      "size": "S",
+      "quantity": 1,
+      "id": 6
     }
   ]
 }

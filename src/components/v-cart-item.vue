@@ -60,7 +60,7 @@ align-items: center;
   padding: $padding*2;
   margin-bottom: 16px;
   &__img{
-    wax-width: 50px;
+    width: 200px;
   }
  .quantity_btn{
    cursor: pointer;

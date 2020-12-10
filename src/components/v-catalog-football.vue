@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <v-header/>
-    <div class="v-catalog">
+    <div class="v-catalog-football">
 
       <div class="filters">
         <v-select
@@ -11,8 +11,8 @@
         />
         <span class="selectPrice">Select price</span>
         <div class="range-value">
-          <p class="valueRange">Min: {{minPrice}}$</p>
-          <p class="valueRange">Max: {{maxPrice}}$</p>
+          <p class="valueRange">Min: {{ minPrice }}$</p>
+          <p class="valueRange">Max: {{ maxPrice }}$</p>
         </div>
         <div class="range-slaider">
 
@@ -33,13 +33,9 @@
               @change="setRangeSliders"
           >
         </div>
-
-
       </div>
 
-
-
-      <div class="v-catalog__list">
+      <div class="v-catalog-football__list">
         <v-catalog-item
             v-for="product in filterPtoducts"
             :key="product.article"
@@ -50,12 +46,11 @@
       </div>
 
 
-
-
     </div>
+
+
     <v-footer/>
   </div>
-
 </template>
 
 <script>
@@ -66,10 +61,8 @@ import vHeader from './v-header'
 import vFooter from './v-footer'
 import axios from 'axios'
 
-
-
 export default {
-  name: "v-catalog",
+  name: "v-catalog-football",
   components: {
     vCatalogItem, vSelect, vHeader, vFooter
   },
@@ -83,8 +76,8 @@ export default {
       ],
       selected: 'Select',
       sortedProducts: [],
-      minPrice:0,
-      maxPrice:10000
+      minPrice: 0,
+      maxPrice: 10000
 
     }
 
@@ -92,9 +85,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'PRODUCTS',
       'CART',
-        'PRODUCTS_RUNNING'
+      'PRODUCTS_FOOTBALL'
     ]),
     filterPtoducts() {
       if (this.sortedProducts.length) {
@@ -109,11 +101,12 @@ export default {
 
   methods: {
     ...mapActions([
-      'GET_PRODUCTS_FROM_API'
+      'GET_PRODUCTS_FROM_API_FOOTBALL'
 
     ]),
     addToCart(data) {
 
+      console.log(data.article)
       axios.post('http://localhost:3000/products', {
         article: data.article
       })
@@ -125,14 +118,14 @@ export default {
           });
 
     },
-    productClick(artile){
+    productClick(artile) {
 
-      this.$router.push({name:'product',query:{'product':artile}})
+      this.$router.push({name: 'product', query: {'product': artile}})
     },
     sortByCategaries(category) {
-      let vm=this;
-      this.sortedProducts = [...this.PRODUCTS];
-      this.sortedProducts = this.sortedProducts.filter(function (item){
+      let vm = this;
+      this.sortedProducts = [...this.PRODUCTS_FOOTBALL];
+      this.sortedProducts = this.sortedProducts.filter(function (item) {
         return item.price >= vm.minPrice && item.price <= vm.maxPrice
       })
       if (category) {
@@ -140,11 +133,11 @@ export default {
           vm.selected === category.name;
           return e.category === category.name
         })
-        vm.selected=category.name;
+        vm.selected = category.name;
       }
     },
-    setRangeSliders(){
-      if (this.minPrice > this.maxPrice){
+    setRangeSliders() {
+      if (this.minPrice > this.maxPrice) {
         let tmp = this.maxPrice;
         this.maxPrice = this.minPrice;
         this.minPrice = tmp;
@@ -154,17 +147,17 @@ export default {
 
   },
   mounted() {
-    this.GET_PRODUCTS_FROM_API()
+    this.GET_PRODUCTS_FROM_API_FOOTBALL()
         .then((responce) => {
           if (responce.data) {
             this.sortByCategaries()
           }
-        });
+        })
   }
+
 }
-
-
 </script>
+
 
 <style lang="scss">
 @import '../assets/style/style.scss';
@@ -172,15 +165,9 @@ export default {
 .main .header .column.cart {
   position: relative;
 }
-.v-catalog_to_cart{
-  position: absolute;
-  top: 0;
-  right: 36px;
-  color: black;
-  font-size: 18px;
-}
 
-.v-catalog {
+
+.v-catalog-football{
   margin-top: 10px;
   display: flex;
 
@@ -193,41 +180,47 @@ export default {
     width: 75%;
 
   }
-  .filters{
+
+  .filters {
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
     padding-left: 15px;
 
-    .selectPrice{
+    .selectPrice {
       font: 400 1.375em 'Montserrat', sans-serif;
       text-transform: uppercase;
       padding-top: 119px;
       padding-bottom: 14px;
     }
   }
-  .range-slaider{
+
+  .range-slaider {
     width: 200px;
     margin: 48px 20px 0;
     text-align: center;
     position: relative;
 
   }
-  .range-value{
-margin: 10px auto;
+
+  .range-value {
+    margin: 10px auto;
 
     display: flex;
 
   }
-  .range-value p{
+
+  .range-value p {
     border: 1px solid #aeaeae;
     font: 400 1em 'Montserrat', sans-serif;
     margin-right: 23px;
     padding: 5px;
   }
-  .range-value p:last-of-type{
+
+  .range-value p:last-of-type {
     margin-right: 0;
   }
-  .range-slaider svg, .range-slaider input[type=range]{
+
+  .range-slaider svg, .range-slaider input[type=range] {
     position: absolute;
     left: 0;
     bottom: 0;
@@ -239,9 +232,11 @@ margin: 10px auto;
     margin: 18px 0;
     width: 100%;
   }
+
   input[type=range]:focus {
     outline: none;
   }
+
   input[type=range]::-webkit-slider-runnable-track {
     width: 100%;
     height: 8.4px;
@@ -252,6 +247,7 @@ margin: 10px auto;
     border-radius: 1.3px;
 
   }
+
   input[type=range]::-webkit-slider-thumb {
     z-index: 2;
     position: relative;
@@ -265,13 +261,13 @@ margin: 10px auto;
     -webkit-appearance: none;
     margin-top: -11px;
   }
+
   input[type=range]:focus::-webkit-slider-runnable-track {
-    background:#2EE59D;
+    background: #2EE59D;
   }
 
 
 }
-
 
 
 </style>

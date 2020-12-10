@@ -8,14 +8,30 @@ Vue.use(Vuex);
 let store = new Vuex.Store({
     state: {
         products: [],
-        cart:[]
+        cart:[],
+        cart_products:[],
+        products_running:[],
+        products_fitness:[],
+        products_football:[]
 
     },
     mutations: {
         SET_PRODUCTS_TO_STATE: (state,products)=>{
             state.products = products;
         },
-        SET_CART: (state,product)=>{
+        SET_PRODUCTS_TO_CART:(state,products)=>{
+            state.cart_products = products;
+        },
+        SET_PRODUCTS_TO_STATE_RUNNING:(state,products)=> {
+            state.products_running = products;
+        },
+        SET_PRODUCTS_TO_STATE_FITNESS:(state,products)=> {
+            state.products_running = products;
+        },
+        SET_PRODUCTS_TO_STATE_FOOTBALL:(state,products)=> {
+            state.products_football = products;
+        },
+       /* SET_CART: (state,product)=>{
             if(state.cart.length){
                let isProductExists = false;
                state.cart.map(function (item){
@@ -31,18 +47,18 @@ let store = new Vuex.Store({
                 state.cart.push(product)
             }
 
-        },
+        },*/
         INCREMENT: (state, index)=>{
-            state.cart[index].quantity++
+            state.cart_products[index].quantity++
         },
         DECREMENT: (state, index)=>{
-            if (state.cart[index].quantity>1){
-                state.cart[index].quantity--
+            if (state.cart_products[index].quantity>1){
+                state.cart_products[index].quantity--
             }
 
         },
         REMOVE_FROM_CART: (state,index)=>{
-            state.cart.splice(index,1)
+            state.cart_products.splice(index,1)
         }
     },
     actions: {
@@ -60,10 +76,64 @@ let store = new Vuex.Store({
                     return error;
                 })
         },
+        GET_PRODUCTS_FROM_API_RUNNING({commit}){
+            return axios('http://localhost:3000/products', {
+                method: "GET"
+            })
+                .then((products)=>{
 
-        ADD_TO_CART({commit},product){
-            commit('SET_CART',product);
+                    commit ("SET_PRODUCTS_TO_STATE_RUNNING",products.data);
+                    return products;
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    return error;
+                })
         },
+        GET_PRODUCTS_FROM_API_FOOTBALL({commit}){
+            return axios('http://localhost:3000/products', {
+                method: "GET"
+            })
+                .then((products)=>{
+
+                    commit ("SET_PRODUCTS_TO_STATE_FOOTBALL",products.data);
+                    return products;
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    return error;
+                })
+        },
+        GET_PRODUCTS_FROM_API_FITNESS({commit}){
+            return axios('http://localhost:3000/products', {
+                method: "GET"
+            })
+                .then((products)=>{
+
+                    commit ("SET_PRODUCTS_TO_STATE_FITNESS",products.data);
+                    return products;
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    return error;
+                })
+        },
+
+        GET_CART_PRODUCT({commit}){
+            return axios('http://localhost:3000/products', {
+                method: "GET"
+            })
+                .then((products)=>{
+
+                    commit ("SET_PRODUCTS_TO_CART",products.data);
+                    return products;
+                })
+                .catch((error)=>{
+                    console.log(error);
+                    return error;
+                })
+        },
+
         INCREMENT_CART({commit},index){
             commit('INCREMENT',index)
         },
@@ -78,8 +148,20 @@ let store = new Vuex.Store({
         PRODUCTS(state) {
             return state.products;
         },
+        CART_PRODUCT(state){
+            return state.cart_products;
+        },
         CART(state){
             return state.cart;
+        },
+        PRODUCTS_RUNNING(state){
+            return state.products_running
+        },
+        PRODUCTS_FITNESS(state){
+            return state.products_running
+        },
+        PRODUCTS_FOOTBALL(state){
+            return state.products_football
         }
     }
 });

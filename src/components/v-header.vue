@@ -7,32 +7,33 @@
       </div>
       <div class="column">
         <router-link :to="{name:'home'}">
-          <a href=""><p>Home</p></a>
+          <p>Home</p>
         </router-link>
       </div>
-      <div class="column">
+      <div class="column dropdown">
         <router-link :to="{name:'catalog'}">
           <a href=""><p>Catalog</p></a>
         </router-link>
+
+          <div class="dropdown-content">
+            <router-link :to="{name:'running'}">
+             <p>Running</p>
+            </router-link>
+
+
+
+            <router-link :to="{name:'fitness'}">
+              <p>Fitness</p>
+            </router-link>
+
+
+            <router-link :to="{name:'football'}">
+              <p>Football</p>
+            </router-link>
       </div>
-      <div class="column">
-        <router-link :to="{name:'running'}">
-          <a href=""><p>Running</p></a>
-        </router-link>
 
       </div>
-      <div class="column">
-        <router-link :to="{name:'fitness'}">
-          <a href=""><p>Fitness</p></a>
-        </router-link>
 
-      </div>
-      <div class="column">
-        <router-link :to="{name:'football'}">
-          <a href=""><p>Football</p></a>
-        </router-link>
-
-      </div>
 
       <div class="column">
         <router-link :to="{name:'delivery'}">
@@ -57,6 +58,8 @@
 
 <script>
 import {mapGetters} from "vuex";
+
+
 export default {
 name: "v-header",
   computed:{
@@ -69,5 +72,10 @@ name: "v-header",
 
 <style >
 @import '../assets/style/style.scss';
-
+.main .logo{
+  background: url("../assets/style/logo.png") center/cover;
+  height: 4.688em;
+  width: 14.688em;
+  margin: 0 18.75em 0 4.25em;
+}
 </style>
